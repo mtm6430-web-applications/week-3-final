@@ -44,12 +44,7 @@
           >
             {{ tab }}
           </span>
-          <section v-show="selectedTab === 'Features'">
-              <h2>Features</h2>
-              <ul>
-                <li v-for="feature in features">{{ feature }}</li>
-              </ul>
-            </section>
+            <product-features :selected="selectedTab"></product-features>
             <section v-show="selectedTab === 'Specs'">
               <h2>Specs</h2>
               <dl v-for="(value, key) in specs">

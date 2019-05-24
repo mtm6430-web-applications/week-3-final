@@ -1,10 +1,25 @@
+Vue.component('product-features', {
+  props: ['selected'],
+  template: `
+  <section v-show="selected === 'Features'">
+    <h2>Features</h2>
+    <ul>
+      <li v-for="feature in features">{{ feature }}</li>
+    </ul>
+  </section>`,
+  data: function () {
+    return {
+      features: ['1200CC Air-cooled Evolution Engine', 'Closed loop exhaust system', 'Chrome Details']
+    }
+  }
+})
+
 var app = new Vue({
   el: '#app',
   data: {
     name: 'Cruiser',
     brand: 'Iron Horse',
     description: 'True to its name, the Iron Horse Cruiser is an <i>experience and expression of freedom</i>.',
-    features: ['1200CC Air-cooled Evolution Engine', 'Closed loop exhaust system', 'Chrome Details'],
     specs: {
       engine: '1200cc',
       torque: '99 NM',
