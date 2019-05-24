@@ -36,8 +36,7 @@ var app = new Vue({
       this.selectedVariation = index
       console.log(this.selectedVariation)
     },
-    commentSubmit: function (event) {
-      event.preventDefault()
+    commentSubmit: function () {
       console.log(this.yourName + ' says ' + this.yourComment)
     }
   },

@@ -68,7 +68,7 @@
                 <li>Comment 1</li>
                 <li>Comment 2</li>
               </ul>
-              <form @submit="commentSubmit">
+              <form @submit.prevent="commentSubmit">
                 <div class="form-group">
                   <label for="name">Your Name</label>
                   <input v-model="yourName" class="form-control" type="text" id="name">
