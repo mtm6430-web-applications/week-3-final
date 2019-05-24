@@ -67,6 +67,11 @@
               <ul class="list-group">
                 <li v-for="comment in comments" class="list-group-item">{{ comment }}</li>
               </ul>
+              <div v-if="errors.length" class="alert alert-danger">
+                <ul>
+                  <li v-for="error in errors">{{ error }}</li>
+                </ul>
+              </div>
               <form @submit.prevent="commentSubmit">
                 <div class="form-group">
                   <label for="name">Your Name</label>

@@ -29,7 +29,8 @@ var app = new Vue({
     selectedTab: 'Features',
     yourName: null,
     yourComment: null,
-    comments: []
+    comments: [],
+    errors: []
   },
   methods: {
     updateProduct: function (index) {
@@ -37,11 +38,18 @@ var app = new Vue({
       console.log(this.selectedVariation)
     },
     commentSubmit: function () {
-      let userComment = this.yourName + ': ' + this.yourComment
-      this.comments.push(userComment)
+      this.errors = []
+      if (this.yourName && this.yourComment && this.yourComment.split(' ').length <= 20) {
+        let userComment = this.yourName + ': ' + this.yourComment
+        this.comments.push(userComment)
 
-      this.yourName = null
-      this.yourComment = null
+        this.yourName = null
+        this.yourComment = null
+      } else {
+        if (!this.yourName) this.errors.push('Name cannot be empty')
+        if (!this.yourComment) this.errors.push('Comment cannot be empty')
+        if (this.yourComment.split(' ').length > 20) this.errors.push('Comment can only be 20 words')
+      }
     }
   },
   computed: {
