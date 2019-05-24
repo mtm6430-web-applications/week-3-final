@@ -25,8 +25,10 @@ var app = new Vue({
     ],
     cart: 0,
     selectedVariation: 0,
+    // adding another item in for the tabs
     tabs: ['Features', 'Specs', 'Comments'],
     selectedTab: 'Features',
+    // Adding properties for using with the form
     yourName: null,
     yourComment: null,
     comments: [],
@@ -37,15 +39,24 @@ var app = new Vue({
       this.selectedVariation = index
       console.log(this.selectedVariation)
     },
+    // commentSubmit method called by the form used for adding comment to the comments array
     commentSubmit: function () {
+      // resetting the errors array to empty every-time the commentSubmit is ran, this is to clear out any previously added errors
       this.errors = []
+
+      // Adding conditional for form validation, checking is the inputs are set and the word count of the comment is less-than or equal-to 20
       if (this.yourName && this.yourComment && this.yourComment.split(' ').length <= 20) {
+        // creating a new variable concatenating the name and comment
         let userComment = this.yourName + ': ' + this.yourComment
+
+        // Adding the concatenated comment to the comments array
         this.comments.push(userComment)
 
+        // resetting the yourName and yourComment properties to null, hence clearing the form fields
         this.yourName = null
         this.yourComment = null
       } else {
+        // pushing a relevant message to the errors array
         if (!this.yourName) this.errors.push('Name cannot be empty')
         if (!this.yourComment) this.errors.push('Comment cannot be empty')
         if (this.yourComment.split(' ').length > 20) this.errors.push('Comment can only be 20 words')
