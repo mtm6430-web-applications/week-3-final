@@ -37,7 +37,11 @@ var app = new Vue({
       console.log(this.selectedVariation)
     },
     commentSubmit: function () {
-      console.log(this.yourName + ' says ' + this.yourComment)
+      let userComment = this.yourName + ' says ' + this.yourComment
+      this.comments.push(userComment)
+
+      this.yourName = null
+      this.yourComment = null
     }
   },
   computed: {
