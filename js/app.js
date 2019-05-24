@@ -1,5 +1,8 @@
+// creating a new vue component with name product-feature this name will be used as an HTML element name for displaying this component in our app
 Vue.component('product-features', {
+  // props are used to pass data from the parent component to the child component
   props: ['selected'],
+  // temaplte contains the HTML with Vue directives to be embedded in the app
   template: `
   <section v-show="selected === 'Features'">
     <h2>Features</h2>
@@ -7,6 +10,7 @@ Vue.component('product-features', {
       <li v-for="feature in features">{{ feature }}</li>
     </ul>
   </section>`,
+  // data in a vue component is a function that returns the object containing the data for the component
   data: function () {
     return {
       features: ['1200CC Air-cooled Evolution Engine', 'Closed loop exhaust system', 'Chrome Details']

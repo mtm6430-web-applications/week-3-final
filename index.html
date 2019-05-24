@@ -44,26 +44,22 @@
           >
             {{ tab }}
           </span>
+            <!-- embedding a Vue component into our app, 
+              we are adding a custom attribute of selected which is bind to selectedTab property value, this custom attribute is accessed using props in our component -->
             <product-features :selected="selectedTab"></product-features>
             <product-specs :selected="selectedTab"></product-specs>
-            <!-- section for displaying the comments and comment form -->
             <section v-show="selectedTab === 'Comments'">
-              <!-- List of comments to be generated using the comments property value set by Vue -->
               <ul class="list-group">
                 <li v-for="comment in comments" class="list-group-item">{{ comment }}</li>
               </ul>
-              <!-- Errors div conditionally added to the page is there are errors in errors array -->
               <div v-if="errors.length" class="alert alert-danger">
                 <ul>
-                  <!-- generating list of errors from the errors property -->
                   <li v-for="error in errors">{{ error }}</li>
                 </ul>
               </div>
-              <!-- comments form with event handler for submit and a event modifier of prevent, calls the commentSubmit method of our Vue instance -->
               <form @submit.prevent="commentSubmit">
                 <div class="form-group">
-                  <label for="name">Your Name</label>
-                  <!-- Two-way data binding using the v-model directive -->
+                  <label for="name">Your Name</label>        
                   <input v-model="yourName" class="form-control" type="text" id="name">
                 </div>
                 <div class="form-group">
