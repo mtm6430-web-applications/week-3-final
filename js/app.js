@@ -26,7 +26,10 @@ var app = new Vue({
     cart: 0,
     selectedVariation: 0,
     tabs: ['Features', 'Specs', 'Comments'],
-    selectedTab: 'Features'
+    selectedTab: 'Features',
+    yourName: null,
+    yourComment: null,
+    comments: []
   },
   methods: {
     updateProduct: function (index) {
