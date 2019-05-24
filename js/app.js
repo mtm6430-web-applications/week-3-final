@@ -45,21 +45,24 @@ var app = new Vue({
       this.errors = []
 
       // Adding conditional for form validation, checking is the inputs are set and the word count of the comment is less-than or equal-to 20
-      if (this.yourName && this.yourComment && this.yourComment.split(' ').length <= 20) {
-        // creating a new variable concatenating the name and comment
-        let userComment = this.yourName + ': ' + this.yourComment
+      if (this.yourName && this.yourComment) {
+        if (this.yourComment.split(' ').length <= 20) {
+          // creating a new variable concatenating the name and comment
+          let userComment = this.yourName + ': ' + this.yourComment
 
-        // Adding the concatenated comment to the comments array
-        this.comments.push(userComment)
+          // Adding the concatenated comment to the comments array
+          this.comments.push(userComment)
 
-        // resetting the yourName and yourComment properties to null, hence clearing the form fields
-        this.yourName = null
-        this.yourComment = null
+          // resetting the yourName and yourComment properties to null, hence clearing the form fields
+          this.yourName = null
+          this.yourComment = null
+        } else {
+          this.errors.push('Comment can only be 20 words')
+        }
       } else {
         // pushing a relevant message to the errors array
         if (!this.yourName) this.errors.push('Name cannot be empty')
         if (!this.yourComment) this.errors.push('Comment cannot be empty')
-        if (this.yourComment.split(' ').length > 20) this.errors.push('Comment can only be 20 words')
       }
     }
   },
