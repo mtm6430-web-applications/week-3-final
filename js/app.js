@@ -35,6 +35,10 @@ var app = new Vue({
     updateProduct: function (index) {
       this.selectedVariation = index
       console.log(this.selectedVariation)
+    },
+    commentSubmit: function (event) {
+      event.preventDefault()
+      console.log(this.yourName + ' says ' + this.yourComment)
     }
   },
   computed: {

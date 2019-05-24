@@ -68,14 +68,14 @@
                 <li>Comment 1</li>
                 <li>Comment 2</li>
               </ul>
-              <form>
+              <form @submit="commentSubmit">
                 <div class="form-group">
                   <label for="name">Your Name</label>
-                  <input class="form-control" type="text" id="name">
+                  <input v-model="yourName" class="form-control" type="text" id="name">
                 </div>
                 <div class="form-group">
                   <label for="comment">Comment</label>
-                  <textarea class="form-control" id="comment"></textarea>
+                  <textarea v-model="yourComment" class="form-control" id="comment"></textarea>
                 </div>
                 <input type="submit" value="Submit">
               </form>
