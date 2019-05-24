@@ -45,19 +45,7 @@
             {{ tab }}
           </span>
             <product-features :selected="selectedTab"></product-features>
-            <section v-show="selectedTab === 'Specs'">
-              <h2>Specs</h2>
-              <dl v-for="(value, key) in specs">
-                <dt>{{ key }}</dt>
-                <dd v-if="Array.isArray(value)">
-                  <ul>
-                    <li v-for="(item, index) in value" :key="index">{{ item }}</li>
-                  </ul>
-                </dd>
-                <dd v-else>{{ value }}</dd>
-                
-              </dl>
-            </section>
+            <product-specs :selected="selectedTab"></product-specs>
             <!-- section for displaying the comments and comment form -->
             <section v-show="selectedTab === 'Comments'">
               <!-- List of comments to be generated using the comments property value set by Vue -->

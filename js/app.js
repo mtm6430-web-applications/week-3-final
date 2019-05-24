@@ -13,19 +13,40 @@ Vue.component('product-features', {
     }
   }
 })
-
+Vue.component('product-specs', {
+  props: ['selected'],
+  template: `
+    <section v-show="selected === 'Specs'">
+      <h2>Specs</h2>
+      <dl v-for="(value, key) in specs">
+        <dt>{{ key }}</dt>
+        <dd v-if="Array.isArray(value)">
+          <ul>
+            <li v-for="(item, index) in value" :key="index">{{ item }}</li>
+          </ul>
+        </dd>
+        <dd v-else>{{ value }}</dd>
+        
+      </dl>
+    </section>
+  `,
+  data: function () {
+    return {
+      specs: {
+        engine: '1200cc',
+        torque: '99 NM',
+        weight: '255 kg',
+        other: ['Two tone colour', 'Fog lamps', 'Alloy Wheels']
+      }
+    }
+  }
+})
 var app = new Vue({
   el: '#app',
   data: {
     name: 'Cruiser',
     brand: 'Iron Horse',
     description: 'True to its name, the Iron Horse Cruiser is an <i>experience and expression of freedom</i>.',
-    specs: {
-      engine: '1200cc',
-      torque: '99 NM',
-      weight: '255 kg',
-      other: ['Two tone colour', 'Fog lamps', 'Alloy Wheels']
-    },
     variations: [
       {
         color: 'red',
