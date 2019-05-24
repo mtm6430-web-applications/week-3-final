@@ -65,8 +65,7 @@
             </section>
             <section v-show="selectedTab === 'Comments'">
               <ul>
-                <li>Comment 1</li>
-                <li>Comment 2</li>
+                <li v-for="comment in comments">{{ comment }}</li>
               </ul>
               <form @submit.prevent="commentSubmit">
                 <div class="form-group">
