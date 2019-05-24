@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Iron Horse Motorcycles - Cruiser</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="./css/style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container" id="app">
+    <nav class="navbar navbar-light bg-light">
+        {{ title }}
+        <div class="badge badge-secondary">Cart({{ cart }})</div>
+    </nav>
+    <div class="row">
+      <div class="col-sm-6">
+        <img class="img-fluid" :src="image" alt="Red Motorcycle Illustration ">
+      </div>
+      <div class="col-sm-6">
+        <h1>{{ name }}</h1>
+        <p>{{ brand }}</p>
+        <p class="lead" v-html="description"></p>
+        <p :style="variations[selectedVariation].quantity < 5 ? {color: 'red' } : ''">
+          InStock {{variations[selectedVariation].quantity}}
+          <span v-show="variations[selectedVariation].quantity < 5">(Almost Sold Out)</span>
+        </p>
+        
+        <div>
+          <h2>Colours Available</h2>
+          <span class="color-box" v-for="(variation, index) in variations" :key="index" v-bind:class="variation.color" v-on:mouseover="updateProduct(index)"></span>
+        </div>
+        <button v-on:click="cart++" :style="{backgroundColor: 'green'}">Add to Cart</button>
+        <button @click="cart--" :style="{backgroundColor: 'red'}">Remove from Cart</button>
+      </div>
+      <div class="col-sm-12">
+        <span 
+          v-for="(tab, index) in tabs" 
+          :key="index" 
+          @click="selectedTab = tab" 
+          class="tab"
+          :class="{active: selectedTab === tab}"
+          >
+            {{ tab }}
+          </span>
+          <section v-show="selectedTab === 'Features'">
+              <h2>Features</h2>
+              <ul>
+                <li v-for="feature in features">{{ feature }}</li>
+              </ul>
+            </section>
+            <section v-show="selectedTab === 'Specs'">
+              <h2>Specs</h2>
+              <dl v-for="(value, key) in specs">
+                <dt>{{ key }}</dt>
+                <dd v-if="Array.isArray(value)">
+                  <ul>
+                    <li v-for="(item, index) in value" :key="index">{{ item }}</li>
+                  </ul>
+                </dd>
+                <dd v-else>{{ value }}</dd>
+                
+              </dl>
+            </section>
+      </div>
+    </div>
+    
+    <footer>
+      <small><a href="https://www.freepik.com/free-photos-vectors/background">Background vector created by brgfx - www.freepik.com</a></small>
+    </footer>
+  </div>
+  <!-- development version, includes helpful console warnings -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>
