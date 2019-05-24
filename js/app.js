@@ -25,7 +25,7 @@ var app = new Vue({
     ],
     cart: 0,
     selectedVariation: 0,
-    tabs: ['Features', 'Specs'],
+    tabs: ['Features', 'Specs', 'Comments'],
     selectedTab: 'Features'
   },
   methods: {
